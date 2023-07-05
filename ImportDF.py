@@ -21,7 +21,7 @@ def ImportDF(fields, pathImport):
     lastData = datetime.fromtimestamp(getmtime(all_filesSI[0])).strftime('%Y%m%d')
     for filename in all_filesSI:
         fileData = datetime.fromtimestamp(getmtime(filename)).strftime('%Y%m%d')
-        iter_csv = pd.read_csv(filename, index_col=None, encoding="UTF-8",header=0, error_bad_lines=False,dtype=str, sep = ';',decimal=',',iterator=True, chunksize=10000, usecols = fields )
+        iter_csv = pd.read_csv(filename, index_col=None, encoding="UTF-8",header=0, on_bad_lines='skip',dtype=str, sep = ';',decimal=',',iterator=True, chunksize=10000, usecols = fields )
         df = pd.concat([chunk for chunk in iter_csv]) # & |  WORKS
         df2 = df[fields] # ordering labels 
         #df2["dataArchive_Import"] = fileData   
@@ -39,7 +39,7 @@ def ImportDF2(fields, pathImport,subnetcheck):
     lastData = datetime.fromtimestamp(getmtime(all_filesSI[0])).strftime('%Y%m%d')
     for filename in all_filesSI:
         fileData = datetime.fromtimestamp(getmtime(filename)).strftime('%Y%m%d')
-        iter_csv = pd.read_csv(filename, index_col=None, encoding="UTF-8",header=0, error_bad_lines=False,dtype=str, sep = ';',decimal=',',iterator=True, chunksize=10000, usecols = fields )
+        iter_csv = pd.read_csv(filename, index_col=None, encoding="UTF-8",header=0, on_bad_lines='skip',dtype=str, sep = ';',decimal=',',iterator=True, chunksize=10000, usecols = fields )
         df = pd.concat([chunk for chunk in iter_csv]) # & |  WORKS
         df2 = df[fields] # ordering labels 
         #df2["dataArchive_Import"] = fileData   
@@ -59,7 +59,7 @@ def ImportDF3(fields, pathImport):
     lastData = datetime.fromtimestamp(getmtime(all_filesSI[0])).strftime('%Y%m%d')
     for filename in all_filesSI:
         fileData = datetime.fromtimestamp(getmtime(filename)).strftime('%Y%m%d')
-        iter_csv = pd.read_csv(filename, index_col=None, encoding="ANSI",header=0, error_bad_lines=False,dtype=str, sep = ';',iterator=True, chunksize=10000, usecols = fields )
+        iter_csv = pd.read_csv(filename, index_col=None, encoding="ANSI",header=0, on_bad_lines='skip',dtype=str, sep = ';',iterator=True, chunksize=10000, usecols = fields )
         df = pd.concat([chunk for chunk in iter_csv]) # & |  WORKS
         df2 = df[fields] # ordering labels 
         #df2["dataArchive_Import"] = fileData   

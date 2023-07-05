@@ -32,7 +32,7 @@ def processArchive():
   Licceu = change_columnsName(Licceu)
 
   Merged = pd.merge(PMO,Licceu, how='left',left_on=['ORDEM_COMPLEXA_PMO'],right_on=['OC_NetFlow_Licceu'])
-  Merged.drop(['OC_NetFlow_Licceu'],1,inplace = True)
+  Merged.drop(['OC_NetFlow_Licceu'],axis=1,inplace = True)
   Merged.loc[Merged['STATUS_Licceu'].isna(),['STATUS_Licceu']] = 'Verificar OC'
 
   #Status COVERAGE INDOOR como tratar?

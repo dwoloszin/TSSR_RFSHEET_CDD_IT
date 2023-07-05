@@ -26,7 +26,7 @@ def processArchive():
     lastData = all_filesSI[0][len(all_filesSI[0])-19:len(all_filesSI[0])-11]
     for filename in all_filesSI:
         dataFile = time.strftime('%Y%m%d', time.gmtime(os.path.getmtime(filename)))
-        iter_csv = pd.read_csv(filename, index_col=None,header=0, error_bad_lines=False,dtype=str, sep = ';',iterator=True, chunksize=10000, usecols = fields )
+        iter_csv = pd.read_csv(filename, index_col=None,header=0, on_bad_lines='skip',dtype=str, sep = ';',iterator=True, chunksize=10000, usecols = fields )
         df = pd.concat([chunk for chunk in iter_csv])
         df = df[fields] # ordering labels
         df['DateArchive'] = dataFile

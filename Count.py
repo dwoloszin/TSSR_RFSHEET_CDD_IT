@@ -6,7 +6,7 @@ def count2(df,ref):
     removefromloop = [ref]
     locationBase_top = list(dataframe.columns)
     res = list(set(locationBase_top)^set(removefromloop))
-    dataframe = dataframe.drop(res,1) 
+    dataframe = dataframe.drop(res,axis=1) 
     dataframe['count'] = dataframe.groupby(ref)[ref].transform('count')
     return dataframe
 

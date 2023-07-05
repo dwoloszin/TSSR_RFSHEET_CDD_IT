@@ -30,7 +30,7 @@ def processArchive(frameSI):
     frameSI = compare(frameSI,'Pending_Licceu','REGRA_TIM')
 
     frameSI = pd.merge(frameSI,Excep, how='left',left_on=['ORDEM_COMPLEXA_PMO'],right_on=['ORDEM'])
-    frameSI.drop(['ORDEM'],1,inplace = True)
+    frameSI.drop(['ORDEM'],axis=1,inplace = True)
     
 
     frameSI['REAL_ACEITACAO_LOGICA_PMO'] = frameSI['REAL_ACEITACAO_LOGICA_PMO'].replace('N/A', '-')
